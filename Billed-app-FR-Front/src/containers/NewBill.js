@@ -17,29 +17,43 @@ export default class NewBill {
   }
   handleChangeFile = e => {
     e.preventDefault()
-    const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
+    const fileInput = this.document.querySelector(`input[data-testid="file"]`);
+  const file = fileInput.files[0];
+  //console.log(file);
+  // Vérifiez l'extension du fichier
+  const allowedExtensions = ['jpg', 'jpeg', 'png'];
+  const fileExtension = file.name.split('.').pop();
+  //console.log(fileExtension);
+  //console.log(allowedExtensions);
+  if (!allowedExtensions.includes(fileExtension)) {
+    // Affichez un message d'erreur ou bloquez l'opération
+    console.error('Extension de fichier non autorisée.');
+    return;
+  }
     const filePath = e.target.value.split(/\\/g)
+    console.log(filePath); 
     const fileName = filePath[filePath.length-1]
+    console.log(fileName);
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
 
     this.store
-      .bills()
-      .create({
-        data: formData,
-        headers: {
-          noContentType: true
-        }
-      })
-      .then(({fileUrl, key}) => {
-        console.log(fileUrl)
-        this.billId = key
-        this.fileUrl = fileUrl
-        this.fileName = fileName
-      }).catch(error => console.error(error))
-  }
+    .bills()
+    .create({
+      data: formData,
+      headers: {
+        noContentType: true
+      }
+    })
+    .then(({fileUrl, key}) => {
+      this.billId = key
+      this.fileUrl = fileUrl
+      this.fileName = fileName
+    })
+    .catch(error => console.error(error))
+}
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)

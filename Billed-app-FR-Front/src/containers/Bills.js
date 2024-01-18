@@ -36,6 +36,7 @@ export default class {
       .list()
       .then(snapshot => {
         const bills = snapshot
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
           .map(doc => {
             try {
               return {
@@ -55,13 +56,7 @@ export default class {
               }
             }
           })
-          console.log('mockedBills:', this.store.bills().list());
-          /*console.log('mockedBills:', this.store.bills().list().then(data => {
-            data.forEach(bill => {
-              console.log('Bill:', bill);
-            });
-          }))*/
-          console.log('length', bills.length)
+          //console.log('length', bills.length)
         return bills
       })
     }

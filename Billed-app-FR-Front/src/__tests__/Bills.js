@@ -1,11 +1,11 @@
-/**
+/*/**
  * @jest-environment jsdom
  */
 
 import {screen, waitFor} from "@testing-library/dom"
 import BillsUI from "../views/BillsUI.js"
 import { bills } from "../fixtures/bills.js"
-import { ROUTES_PATH} from "../constants/routes.js";
+import { ROUTES,ROUTES_PATH} from "../constants/routes.js";
 import {localStorageMock} from "../__mocks__/localStorage.js";
 
 import router from "../app/Router.js";
@@ -23,10 +23,11 @@ describe("Given I am connected as an employee", () => {
       document.body.append(root)
       router()
       window.onNavigate(ROUTES_PATH.Bills)
-      await waitFor(() => screen.getByTestId('icon-window'))
-      const windowIcon = screen.getByTestId('icon-window')
+      await waitFor(() => screen.getByTestId('icon-window'));
+      const windowIcon = screen.getByTestId('icon-window');
       //to-do write expect expression
-
+      // j'ai ajouté cette ligne pour vérifier que l'icône de la fenêtre est en surbrillance
+      expect(windowIcon.classList.contains("active-icon")).toBe(true)
     })
     test("Then bills should be ordered from earliest to latest", () => {
       document.body.innerHTML = BillsUI({ data: bills })
@@ -37,3 +38,37 @@ describe("Given I am connected as an employee", () => {
     })
   })
 })
+  // Test unitaire pour handleClickNewBill
+ /* describe("When I click the button NewBill", () => {
+    test("handleClickNewBill should call onNavigate with correct argument", () => {
+      const onNavigateMock = jest.fn();
+      const billsInstance = new Bills({
+        document: yourMockedDocumentObject,
+        onNavigate: onNavigateMock,
+        store: yourMockedStoreObject,
+        localStorage: yourMockedLocalStorageObject
+      });
+    
+      billsInstance.handleClickNewBill();
+    
+      // Assert that onNavigate was called with the correct argument (ROUTES_PATH['NewBill'])
+      expect(onNavigateMock).toHaveBeenCalledWith(ROUTES_PATH['NewBill']);
+    });
+  })
+//Test unitaire pour handleClickIconEye : simuler un clic sur l'icône et vérifier si la modal est mise à jour correctement.
+  describe("When I click the icon Eye", () => {
+    test("Then the modal shoud be open ", () => {
+      const onNavigate = (pathname) => {
+        document.body.innerHTML = ROUTES({ pathname })
+      }
+
+    })
+
+    
+  })
+//test d'integration getBills
+  describe("When I try to get bills", () => {
+    test("Then I should get bills with format date", () => {
+
+    })
+  })*/
