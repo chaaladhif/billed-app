@@ -23,7 +23,7 @@ export default class {
   handleClickIconEye = (icon) => {
     const billUrl = icon.getAttribute("data-bill-url")
     // Ajoutez cette ligne pour déboguer
-  console.log('billUrl:', billUrl);
+  //console.log('billUrl:', billUrl);
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`)
     $('#modaleFile').modal('show')
@@ -56,7 +56,6 @@ export default class {
               }
             }
           })
-          //console.log('length', bills.length)
         return bills
       })
     }
