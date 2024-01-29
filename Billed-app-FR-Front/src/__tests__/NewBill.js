@@ -110,23 +110,7 @@ describe("Given I am connected as an employee", () => {
   consoleErrorMock.mockRestore();
 });
   });
-  // Test Case 03: When I am on Newbill page and I upload a valid image format ******n'est pas terminé***************
-  /*describe("When I am on Newbill page and I upload a valid image format", () => {
-    test("Then it should create the bill", async () => {
-      const html = NewBillUI();
-      document.body.innerHTML = html;
-      Object.defineProperty(window, 'localStorage', { value: localStorageMock });
-      window.localStorage.setItem('user', JSON.stringify({
-        type: 'Employee'
-      }));
-      const root = document.createElement("div");
-      root.setAttribute("id", "root");
-      document.body.append(root);
-      router();
-      window.onNavigate(ROUTES_PATH.NewBill);
-    })
-    })
-    */
+
 // test d'intégration POST
 describe("When I am on NewBill Page, I fill the form and submit", () => {
   test("Then the bill is added to API POST", async () => {
@@ -188,64 +172,3 @@ describe("When I am on NewBill Page, I fill the form and submit", () => {
     expect(handleSubmit).toHaveBeenCalled();
   });
 });
-
- 
-      
-      
-      
-      
-      
-      
-      
-      
-      //const html = NewBillUI();
-     /* document.body.innerHTML = html;
-      Object.defineProperty(window, 'localStorage', { value: localStorageMock });
-      window.localStorage.setItem('user', JSON.stringify({
-        type: 'Employee'
-      }));
-      const root = document.createElement("div");
-      root.setAttribute("id", "root");
-      document.body.append(root);
-      router();
-      window.onNavigate(ROUTES_PATH.NewBill);
-      const newBillContainer = new NewBill({ document, onNavigate, store: null, localStorage: window.localStorage }); 
-         
-      await waitFor(() => screen.getAllByText("Envoyer une note de frais"));
-      // Example: Selecting a file
-      const fileInput = document.querySelector(`input[data-testid="file"]`);
-      const validFile = new File([""], "valid.png", { type: "image/png" });
-      userEvent.upload(fileInput, validFile);
-
-      // Filling form fields
-      const fakeEvent = {
-        preventDefault: jest.fn(),
-        target: {
-          querySelector: jest.fn().mockImplementation((input) => {
-            if (input === `select[data-testid="expense-type"]`) {
-              return { value: "Transports" };
-            }
-            if (input === `select[data-testid="amount"]`) {
-              return { value: 200 };
-            }
-            if (input === `select[data-testid="datepicker"]`) {
-              return { value: "1994-10-22" };
-            }
-            if (input === `select[data-testid="pct"]`) {
-              return { value: 20 };
-            }
-            return { value: undefined };
-          }),
-        },
-      };
-      // Submit the form
-      const handleSubmit = jest.fn(newBillContainer.handleSubmit);
-      newBillForm.addEventListener("submit", handleSubmit);
-      fakeEvent.submit(newBillForm);
-      expect(handleSubmit).toHaveBeenCalled();
-
-      // Wait for the API call or the mocked store method to be called
-      await waitFor(() => {
-      // Check if the create method was called
-      expect(mockStore.bills().create).toHaveBeenCalled();
-     });*/
