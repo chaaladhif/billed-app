@@ -22,6 +22,7 @@ export default class NewBill {
   //console.log(file);
   // Vérifiez l'extension du fichier
   const allowedExtensions = ['jpg', 'jpeg', 'png'];
+  //diviser la chaine en liste de mots puis recuper le dernier elt
   const fileExtension = file.name.split('.').pop();
   //console.log(fileExtension);
   //console.log(allowedExtensions);
